@@ -1,0 +1,299 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register New Member - Leave Management System</title>
+    <link rel="stylesheet" type="text/css" href="css/s2.css" />
+    <!-- Add your custom CSS file link here -->
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Register New Member</h1>
+          <style>
+        body{
+            background-color: rgb(119, 165, 40);
+        }
+        
+    </style>
+      <form action="/register" method="POST" id="register-form" autocomplete="off">
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            class="form-control"
+            required
+            placeholder="Enter the First name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="Last_name">Last Name</label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            class="form-control"
+            required
+            placeholder="Enter the Last name (middle name included)"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email ID</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            required
+            placeholder="Enter the email address"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="biometric-id">Biometric ID</label>
+          <input
+            type="text"
+            id="biometricId"
+            class="form-control"
+            name= "biometric_id"
+            required
+            placeholder="Enter the biometric ID"
+          />
+        </div>
+        <div class="form-group">
+          <label for="institute">Institute</label>
+          <select id="institute" name= "institute" class="form-control" required>
+            <option value="">Select Institute</option>
+            <option value="GIMT_Guwahati">Girijananda Chowdhury Institute of
+              Management and Technology (GIMT), Guwahati</option>
+            <option value="GIPS_Guwahati">Girijananda Chowdhury Institute of
+              Pharmaceutical Science (GIPS), Guwahati</option>
+            <option value="GIMT_Tezpur">Girijananda Chowdhury Institute of
+              Management and Technology, Tezpur</option>
+            <option value="GIPS_Tezpur">Girijananda Chowdhury Institute of
+              Pharmaceutical Science (GIPS), Tezpur</option>
+          </select>
+        </div>
+
+          <div class="form-group">
+            <label for="user-type">Select User Type:</label>
+            <select class="form-control" id="user-type" name="user_type" required>
+              <option value="">Select User Type</option>
+              <option value="EMPLOYEE">Employee</option>
+              <option value="ADMIN">Admin</option>
+            </select>
+          </div>
+
+          <div id="admin-section" style="display: none;">
+            <div class="form-group">
+              <label for="admin-type">Select Admin Type:</label>
+              <select class="form-control" id="admin-type" name="admin_type">
+                <option value="">Select Admin Type</option>
+                <option value="HR">Human Resource Manager</option>
+                <option value="VC">Vice Chancellor</option>
+                <option value="DR">Deputy Registrar</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="employee-section" style="display: none;">
+            <div class="form-group">
+              <label for="employee-type">Select Employee Type:</label>
+              <select class="form-control" id="employee-type" name="employee_type">
+                <option value="">Select Employee Type</option>
+                <option value="FACULTY">Faculty</option>
+                <option value="NON_FACULTY">Non-Faculty</option>
+              </select>
+            </div>
+          </div>
+
+
+        <div class="form-group">
+          <label for="branch">Branch</label>
+          <select id="branch" class="form-control"  name="branch">
+            <option value="">Select Branch</option>
+            <option value="Engineering_Technology">Engineering and Technology</option>
+            <option value="Management_Commerce">Management and Commerce</option>
+            <option value="Pharmaceutical_Science">Pharmaceutical Science</option>
+            <option value="Humanities_Social_Sciences">Humanities And Social
+              Sciences</option>
+            <option value="Natural_Sciences">Natural Sciences</option>
+            <option value="Paramedical_Science">Paramedical Science</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="form-control"
+            required
+            placeholder="Enter the Phone Number: "
+          />        
+
+
+        <div class="form-group">
+          <label for="designation">Designation</label>
+          <select
+            id="designation"
+            class="form-control"
+            
+            name="designation"
+          >
+            <option value="">Select Designation</option>
+            <option value="HOD">HOD</option>
+            <option value="Associate_Professor">Associate Professor</option>
+            <option value="Assistant_Professor">Assistant Professor</option>
+            <option value="Laboratory_Instructor">Laboratory Instructor</option>
+            <option value="Senior_Assistant_Professor">Senior Assistant
+              Professor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            required
+            placeholder="Enter the password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="form-control"
+            required
+            placeholder="Enter the password"
+          />
+        </div>
+
+        <!-- <h3>Leaves Assigned (default)</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Leave Type</th>
+              <th>Leave Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Casual Leave</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Medical Leave</td>
+              <td>
+            <tr>
+              <td>CompOff Leave</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Duty Leave</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Academic Leave</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Special Leave</td>
+              <td></td>
+            </tr>
+           
+           </tbody>
+        </table> --> 
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    ></script>
+    <script src="js/script2.js"></script>
+  </body>
+</html>
+
+
+
+
+<!--  user_email.Register.specialLeave %> -->
+
+<!-- 
+<h3>Leaves Assigned (default)</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Leave Type</th>
+              <th>Leave Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Casual Leave</td>
+              <td>
+                <td data-cell-type="specialLeave">15</td>
+              </td>
+            </tr>
+            <tr>
+              <td>Medical Leave</td>
+              <td><input
+                  type="number"
+                  class="form-control"
+                  value="10"
+                  required
+                  name="medicalLeaveBalance"
+                /></td>
+            </tr>
+            <tr>
+              <td>CompOff Leave</td>
+              <td><input
+                  type="number"
+                  class="form-control"
+                  value="10"
+                  required
+                  name="compOffLeaveBalance"
+                /></td>
+            </tr>
+            <tr>
+              <td>Duty-Leave Leave</td>
+              <td><input
+                  type="number"
+                  class="form-control"
+                  value="10"
+                  required
+                  name="dutyLeaveBalance"
+                /></td>
+            </tr>
+            <tr>
+              <td>Academic Leave</td>
+              <td><input
+                  type="number"
+                  class="form-control"
+                  value="10"
+                  required
+                  name="academicLeaveBalance"
+                /></td>
+            </tr>
+            <tr>
+              <td>Special Leave</td>
+              <td><input
+                  type="number"
+                  class="form-control"
+                  value="15"
+                  required
+                  name="specialLeaveBalance"
+                /></td>
+            </tr>
+        </tbody> -->

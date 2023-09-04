@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Status - Deputy Registrar</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header bg-info text-white">
+        <h1 class="text-center" style="text-align: center;">Leave Status - Deputy Registrar</h1>
+        <h2 style="text-align: center;" >Welcome, <%= user_email.first_name %> <%= user_email.last_name %></h2>
+      </div>
+      <div class="card-body">
+        <!-- Deputy Registrar leave status content goes here -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Leave Type</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Sample data for demonstration -->
+            <tr>
+              <td>Sick Leave</td>
+              <td>2023-07-25</td>
+              <td>2023-07-27</td>
+              <td>Approved</td>
+            </tr>
+            <tr>
+              <td>Casual</td>
+              <td>2023-08-05</td>
+              <td>2023-08-15</td>
+              <td>Pending</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Show balance button -->
+        <button id="show-balance-btn" class="btn btn-primary btn-block mt-3">Show Balance</button>
+
+        <!-- Leave balance section -->
+        <div id="leave-balance" style="display: none;">
+          <h4 class="mt-4">Leave Balance</h4>
+          <ul>
+            <li>Casual Leave: 11</li>
+            <li>Medical Leave: 9</li>
+            <li>Academic Leave: 9</li>
+            <li>Campoff Leave: 9</li>
+            <li>Duty Leave: 9</li>
+            <li>Special Leave: 14</li>
+          </ul>
+        </div>
+
+        <!-- Apply leave button -->
+        <button id="apply-leave-btn" class="btn btn-primary btn-block mt-3">Apply Leave</button>
+
+        <!-- Apply another leave button -->
+        <button id="apply-another-leave-btn" class="btn btn-primary btn-block mt-3" style="display: none;">Apply Another Leave</button>
+
+        <!-- Manage non-faculty leaves button -->
+        <button id="manage-non-faculty-leaves-btn" class="btn btn-primary btn-block mt-3">Manage Non-Faculty Leaves</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="leave_status_dr_script.js"></script>
+</body>
+</html>

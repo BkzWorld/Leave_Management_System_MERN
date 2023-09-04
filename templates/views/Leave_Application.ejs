@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Application - Leave Management System</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header bg-info text-white">
+        <h1 class="text-center">Leave Application</h1>
+      </div>
+      <div class="card-body">
+        <!-- Leave application form -->
+        <form id="leave-application-form">
+          <!-- Leave type selection -->
+          <div class="form-group">
+            <label for="leave-type">Type of Leave:</label>
+            <select class="form-control" id="leave-type" name="leave-type" required>
+              <option value="">Select Leave Type</option>
+              <option value="CASUAL">Casual Leave</option>
+              <option value="MEDICAL">Medical Leave</option>
+              <option value="ACADEMIC">Academic Leave</option>
+              <option value="CAMPOFF">Campoff Leave</option>
+              <option value="DUTY">Duty Leave</option>
+              <option value="SPECIAL">Special Leave</option>
+            </select>
+          </div>
+
+          <!-- Leave balance display -->
+          <div id="leave-balance-section" style="display: none;">
+            <h4>Leave Balance</h4>
+            <ul id="leave-balance-list">
+              <!-- Leave balances will be populated dynamically using JavaScript -->
+            </ul>
+          </div>
+
+          <!-- Date selection -->
+          <div class="form-group">
+            <label for="leave-from-date">Leave From:</label>
+            <input type="date" class="form-control" id="leave-from-date" name="leave-from-date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="leave-to-date">Leave Till:</label>
+            <input type="date" class="form-control" id="leave-to-date" name="leave-to-date" required>
+          </div>
+
+          <!-- Document upload (optional) -->
+          <div class="form-group">
+            <label for="document-upload">Upload Supporting Document (optional):</label>
+            <input type="file" class="form-control-file" id="document-upload" name="document-upload">
+          </div>
+
+          <!-- Comments (optional) -->
+          <div class="form-group">
+            <label for="leave-comments">Comments (optional):</label>
+            <textarea class="form-control" id="leave-comments" name="leave-comments" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Apply Leave</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Date-fns Library -->
+  <script src="https://cdn.jsdelivr.net/npm/date-fns@2.22.1/esm/index.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="script3.js"></script>
+</body>
+</html>
