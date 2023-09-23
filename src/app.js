@@ -79,20 +79,20 @@ app.get("/LeaveStatus_DR", (req, res) => {
 
 app.get("/Leave_Application", async (req, res) => {
   try {
-    const user_email = await Register.findOne({ email: email });
-    if (!user_email) {
-      res.status(400).send("User ID is missing.");
-      return;
-    }
+    // const user_email = await Register.findOne({ email: email });
+    // if (!user_email) {
+    //   res.status(400).send("User ID is missing.");
+    //   return;
+    // }
 
     // Fetch all documents from the MongoDB collection
-    const savedDates = await Register.find();
-    const user = await Register.findOne(user_email);
+    const savedDates = await DateModel.find();
+    // const user = await Register.findOne(user_email);
 
-    if (!user) {
-      res.status(404).send("User not found.");
-      return;
-    }
+    // if (!user) {
+    //   res.status(404).send("User not found.");
+    //   return;
+    // }
     // Render an EJS template to display the saved dates and durations
     res.render("Leave_Application", { savedDates }); // 'savedDates' is the name of your EJS template
   } catch (error) {
