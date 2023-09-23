@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Populate leave history dynamically (sample data for demonstration)
     const leaveHistoryList = document.getElementById('leave-history-list');
     const leaveHistory = [
-      { type: 'CASUAL', fromDate: '2023-07-01', toDate: '2023-07-03' },
-      { type: 'MEDICAL', fromDate: '2023-07-10', toDate: '2023-07-12' },
+      // { type: 'CASUAL', fromDate: '2023-07-01', toDate: '2023-07-03' },
+      // { type: 'MEDICAL', fromDate: '2023-07-10', toDate: '2023-07-12' },
       // Add more leave history items as needed
     ];
   

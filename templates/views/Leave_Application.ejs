@@ -1,81 +1,187 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leave Application - Leave Management System</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Saved Dates and Durations</title>
+  <!-- Include your styles here -->
+
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 80%; /* Adjust the width as needed */
+      margin: 20px auto; /* Center the table horizontally */
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ffd8d8; /* Gray background for header */
+    }
+
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="date"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    select {
+      height: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    input[type="submit"] {
+      background-color: #78b2f1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #002750;
+    }
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="card">
-      <div class="card-header bg-info text-white">
-        <h1 class="text-center">Leave Application</h1>
-      </div>
-      <div class="card-body">
-        <!-- Leave application form -->
-        <form id="leave-application-form">
-          <!-- Leave type selection -->
-          <div class="form-group">
-            <label for="leave-type">Type of Leave:</label>
-            <select class="form-control" id="leave-type" name="leave-type" required>
-              <option value="">Select Leave Type</option>
-              <option value="CASUAL">Casual Leave</option>
-              <option value="MEDICAL">Medical Leave</option>
-              <option value="ACADEMIC">Academic Leave</option>
-              <option value="CAMPOFF">Campoff Leave</option>
-              <option value="DUTY">Duty Leave</option>
-              <option value="SPECIAL">Special Leave</option>
-            </select>
-          </div>
-
-          <!-- Leave balance display -->
-          <div id="leave-balance-section" style="display: none;">
-            <h4>Leave Balance</h4>
-            <ul id="leave-balance-list">
-              <!-- Leave balances will be populated dynamically using JavaScript -->
-            </ul>
-          </div>
-
-          <!-- Date selection -->
-          <div class="form-group">
-            <label for="leave-from-date">Leave From:</label>
-            <input type="date" class="form-control" id="leave-from-date" name="leave-from-date" required>
-          </div>
-
-          <div class="form-group">
-            <label for="leave-to-date">Leave Till:</label>
-            <input type="date" class="form-control" id="leave-to-date" name="leave-to-date" required>
-          </div>
-
-          <!-- Document upload (optional) -->
-          <div class="form-group">
-            <label for="document-upload">Upload Supporting Document (optional):</label>
-            <input type="file" class="form-control-file" id="document-upload" name="document-upload">
-          </div>
-
-          <!-- Comments (optional) -->
-          <div class="form-group">
-            <label for="leave-comments">Comments (optional):</label>
-            <textarea class="form-control" id="leave-comments" name="leave-comments" rows="3"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">Apply Leave</button>
-        </form>
-      </div>
+  <h1> Apply Leave</h1>
+  <!-- Form for entering date range -->
+  <form action="/Leave_Application" method="post">
+    <div class="form-group">
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" name="startDate" required>
     </div>
-  </div>
+    <div class="form-group">
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" name="endDate" required>
+    </div>
+    <div class="form-group">
+      <label for="leaveType">Leave Type:</label>
+      <select id="leaveType" name="leaveType">
+        <option value="CASUAL" name="casualLeave">Casual Leave</option>
+        <option value="ACADEMIC" name="academicLeave">Academic Leave</option>
+        <option value="MEDICAL" name="medicalLeave">Medical Leave</option>
+        <!-- <option value="COMP_OFF" name="compOffLeave">Comp Off Leave</option> -->
+        <option value="DUTY" name="dutyLeave">Duty Leave</option>
+        <option value="SPECIAL" name="specialLeave">Special Leave</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="document-upload">Upload Supporting Document (optional):</label>
+      <input type="file" class="form-control-file" id="document-upload" name="documentUpload">
+    </div>
+    <div class="form-group">
+      <label for="leave-comments">Comments (optional):</label>
+      <textarea class="form-control" id="leave-comments" name="comments" rows="3"></textarea>
+    </div>
+    <input type="submit" value="Save Duration">
+  </form>
+  <!-- Your form goes here -->
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <hr>
 
-  <!-- Date-fns Library -->
+  <!-- Display saved dates and durations -->
+  <% if (savedDates.length > 0) { %>
+    <h2>Saved Dates and Durations:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Duration (in days)</th>
+          <th>Casual Leave Balance</th>
+          <th>Medical Leave Balance</th>
+          <!-- <th>Comp Off Leave Balance</th> -->
+          <th>Duty Leave Balance</th>
+          <th>Academic Leave Balance</th>
+          <th>Special Leave Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% savedDates.forEach(date => { %>
+          <tr>
+            <td><%= date.startDate.toDateString() %></td>
+            <td><%= date.endDate.toDateString() %></td>
+            <td><%= date.durationInDays %></td>
+            <td><%= date.leaveBalances.casualLeave %></td>
+            <td><%= date.leaveBalances.medicalLeave %></td>
+            <!-- <td></td> -->
+            <td><%= date.leaveBalances.dutyLeave %></td>
+            <td><%= date.leaveBalances.academicLeave %></td>
+            <td><%= date.leaveBalances.specialLeave %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No saved dates and durations yet.</p>
+  <% } %>
+
+  <!-- Your JavaScript goes here -->
+
+  <script>
+    // Add JavaScript here to conditionally validate the form based on the selected leave type
+    document.querySelector("form").addEventListener("submit", function(event) {
+      const leaveType = document.getElementById("leaveType").value;
+      const startDate = new Date(document.getElementById("startDate").value);
+      const endDate = new Date(document.getElementById("endDate").value);
+
+      if (leaveType === "CASUAL") {
+        const differenceInMilliseconds = endDate - startDate;
+        const differenceInDays = Math.floor(
+          differenceInMilliseconds / (1000 * 60 * 60 * 24)
+        );
+
+        if (differenceInDays > 3) {
+          event.preventDefault(); // Prevent form submission
+          alert("Casual Leave cannot be more than 3 days.");
+        }
+      }
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/date-fns@2.22.1/esm/index.js"></script>
 
   <!-- Custom JavaScript -->
   <script src="script3.js"></script>
+
+
 </body>
 </html>
+

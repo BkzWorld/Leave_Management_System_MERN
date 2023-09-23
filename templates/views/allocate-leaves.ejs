@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allocate Leaves</title>
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    <h1>Allocate Leaves</h1>
+    <form action="/allocate-leaves" method="POST">
+        <input type="hidden" name="userId" value="<%= user._id %>">
+        <h2>Allocate Leaves for <%= user.first_name %> <%= user.last_name %></h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Leave Type</th>
+                    <th>Leave Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Casual Leave</td>
+                    <td><input type="number" class="form-control" name="casualLeave" required></td>
+                </tr>
+                <tr>
+                    <td>Medical Leave</td>
+                    <td><input type="number" class="form-control" name="medicalLeave" required></td>
+                </tr>
+                <tr>
+                    <td>Comp Off Leave</td>
+                    <td><input type="number" class="form-control" name="compOffLeave" required></td>
+                </tr>
+                <tr>
+                    <td>Duty Leave</td>
+                    <td><input type="number" class="form-control" name="dutyLeave" required></td>
+                </tr>
+                <tr>
+                    <td>Academic Leave</td>
+                    <td><input type="number" class="form-control" name="academicLeave" required></td>
+                </tr>
+                <tr>
+                    <td>Special Leave</td>
+                    <td><input type="number" class="form-control" name="specialLeave" required></td>
+                </tr>
+                <!-- Add similar rows for other leave types -->
+            </tbody>
+        </table>
+        <button type="submit">Allocate</button>
+    </form>
+</body>
+</html>

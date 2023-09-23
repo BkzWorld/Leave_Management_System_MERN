@@ -9,38 +9,41 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="css/s3.css" />
   </head>
   <body>
     <div class="container mt-5">
       <div class="card">
         <div class="card-header bg-info text-white">
-          <h1 class="text-center" , style="text-align: center;">Leave Status - HR</h1>
-          <h2 style="text-align: center;" >Welcome,  <%= user_email.first_name %> <%= user_email.last_name %></h2>
+          <h1 class="text-center" , style="text-align: center">
+            Leave Status - HR
+          </h1>
+          <h2 style="text-align: center">
+            Welcome, <%= user_email.first_name %> <%= user_email.last_name %>
+          </h2>
         </div>
         <div class="card-body">
-          <!-- HR leave status content goes here -->
           <table class="table table-striped">
+            <caption style="text-align: center">
+              <span class="table-caption">Details</span>
+            </caption>
+            <!-- HR leave status content goes here -->
             <thead>
               <tr>
-                <th scope="col">Leave Type</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">End Date</th>
-                <th scope="col">Status</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Biometric-ID</th>
+                <th scope="col">Phone Number</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Sample data for demonstration -->
               <tr>
-                <td>Sick Leave</td>
-                <td>2023-07-25</td>
-                <td>2023-07-27</td>
-                <td>Approved</td>
-              </tr>
-              <tr>
-                <td>Casual</td>
-                <td>2023-08-05</td>
-                <td>2023-08-15</td>
-                <td>Pending</td>
+                <td scope="row"><%= user_email.first_name%></td>
+                <td><%= user_email.last_name%></td>
+                <td><%= user_email.email%></td>
+                <td><%= user_email.biometric_id%></td>
+                <td><%= user_email.phone%></td>
               </tr>
             </tbody>
           </table>
@@ -68,22 +71,16 @@
             Apply Leave
           </button>
 
-          <!-- Apply another leave button -->
-          <button
-            id="apply-another-leave-btn"
-            class="btn btn-primary btn-block mt-3"
-            style="display: none"
-          >
-            Apply Another Leave
-          </button>
-
           <!-- View leave records button -->
-          <button
-            id="view-leave-records-btn"
-            class="btn btn-primary btn-block mt-3"
+
+          <a href="/user-list"
+            ><button
+              id="view-leave-records-btn"
+              class="btn btn-primary btn-block mt-3"
+            >
+              View Leave Records
+            </button></a
           >
-            View Leave Records
-          </button>
 
           <!-- View leave records button -->
           <a href="register">
@@ -91,7 +88,7 @@
               id="view-leave-records-btn"
               class="btn btn-primary btn-block mt-3"
             >
-             Register New User
+              Register New User
             </button>
           </a>
         </div>

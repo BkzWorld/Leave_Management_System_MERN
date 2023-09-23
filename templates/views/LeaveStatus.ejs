@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leave Status - Leave Management System</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <div class="card">
-      <div class="card-header bg-info text-white">
-        <h1 class="text-center">Leave Status (Faculty)  </h1>
-        <h2 style="text-align: center;" >Welcome, <%= user_email.first_name %> <%= user_email.last_name %></h2>
-      </div>
-      <div class="card-body">
-        <!-- Leave status content goes here --> 
-        <!-- <table class="table table-striped">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leave Status - Leave Management System</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-header bg-info text-white">
+          <h1 class="text-center">Leave Status (Faculty)</h1>
+          <h2 style="text-align: center">
+            Welcome, <%= user_email.first_name %> <%= user_email.last_name %>
+          </h2>
+        </div>
+        <div class="card-body">
+          <!-- Leave status content goes here -->
+          <!-- <table class="table table-striped">
           <thead>
             <tr>
               <th scope="col">Leave Type</th>
@@ -40,12 +45,12 @@
             </tr>
           </tbody>
         </table> -->
-        
-        <!-- Show balance button -->
-        <!-- <button id="show-balance-btn" class="btn btn-primary btn-block mt-3">Show Balance</button> -->
-        
-        <!-- Leave balance section -->
-        <!-- <div id="leave-balance" style="display: none;">
+
+          <!-- Show balance button -->
+          <!-- <button id="show-balance-btn" class="btn btn-primary btn-block mt-3">Show Balance</button> -->
+
+          <!-- Leave balance section -->
+          <!-- <div id="leave-balance" style="display: none;">
           <h4 class="mt-4">Leave Balance</h4>
           <ul>
             <li>Casual Leave: 11</li>
@@ -56,27 +61,46 @@
             <li>Special Leave: 14</li>
           </ul>
         </div> -->
-        
-        <!-- Apply leave button -->
-        <button id="apply-leave-btn" class="btn btn-primary btn-block mt-3">Apply Leave</button>
 
-        <!-- Apply another leave button -->
-        <button id="apply-another-leave-btn" class="btn btn-primary btn-block mt-3" style="display: none;">Apply Another Leave</button>
-        <h4 class="mt-4">Leave History</h4>
-        <ul id="leave-history-list">
-          <!-- Leave history items will be populated dynamically using JavaScript -->
-        </ul>
+          <!-- Apply leave button -->
+
+          <!-- Apply another leave button -->
+
+          <a href="/Leave_Application"
+            ><button
+              id="apply-leave-btn"
+              class="btn btn-primary btn-block mt-3"
+            >
+              Apply Leave
+            </button>
+          </a>
+
+          <a href="/Leave_Application"
+            ><button
+              id="apply-another-leave-btn"
+              class="btn btn-primary btn-block mt-3"
+              style="display: none"
+            >
+              Apply Another Leave
+            </button>
+          </a>
+
+          <h4 class="mt-4">Leave History</h4>
+          <ul id="leave-history-list">
+            <!-- Leave history items will be populated dynamically using JavaScript -->
+          </ul>
+        </div>
+        <a class="nav-link text-blue" href="/logout">Logout</a>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Custom JavaScript -->
-  <script src="js/script3.js"></script>
-  <script src="js/leave_status_script.js"></script>
-</body>
+    <!-- Custom JavaScript -->
+    <script src="js/script3.js"></script>
+    <script src="js/leave_status_script.js"></script>
+  </body>
 </html>

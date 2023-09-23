@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <link rel="stylesheet" type="text/css" href="css/s4.css">
+
+</head>
+<body>
+    <h1>Users List</h1>
+
+    <h2>Admins</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Admin Type</th>
+                <th>Biometric ID</th>
+                <th>Institute</th>
+                <th>Phone Number</th>
+                <th>Leaves</th>
+                <!-- Add more table headers as needed for admin data -->
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const admin of admins) { %>
+                <tr>
+                    <td><%= admin.first_name %></td>
+                    <td><%= admin.last_name %></td>
+                    <td><%= admin.email %></td>
+                    <td><%= admin.admin_type %></td>
+                    <td><%= admin.biometric_id %></td>
+                    <td><%= admin.institute %></td>
+                    <td><%= admin.phone %></td>
+                    <td><a href="/leaveBalances/<%= admin._id %>">View Leave Balances </a>
+                        <span class="gap"></span>
+                        <a href="/allocate-leaves?userId=<%= admin._id %>">Allocate Leaves</a>
+                    </td>
+                    
+                    <!-- Add more table cells for admin data -->
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <h2>Employees</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Employee Type</th>
+                <th>Biometric ID</th>
+                <th>Institute</th>
+                <th>Branch</th>
+                <th>Phone Number</th>
+                <th>Designation</th>
+                <th>Leaves</th>
+                <!-- Add more table headers as needed for employee data -->
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const employee of employees) { %>
+                <tr>
+                    <td><%= employee.first_name %></td>
+                    <td><%= employee.last_name %></td>
+                    <td><%= employee.email %></td>
+                    <td><%= employee.employee_type %></td>
+                    <td><%= employee.biometric_id %></td>
+                    <td><%= employee.institute %></td>
+                    <td><%= employee.branch %></td>
+                    <td><%= employee.phone %></td>
+                    <td><%= employee.designation %></td>
+                    <td><a href="/leaveBalances/<%= employee._id %>">View Leave Balances   </a>
+                        <span class="gap"></span>
+                        <a href="/allocate-leaves?userId=<%= employee._id %>">Allocate Leaves</a>
+                    </td>
+                    <!-- Add more table cells for employee data -->
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

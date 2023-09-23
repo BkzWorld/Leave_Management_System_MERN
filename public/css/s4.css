@@ -1,0 +1,66 @@
+/* Reset some default browser styles */
+body, h1, h2, table {
+    margin: 2px;
+    padding: 2px;
+    border-collapse: collapse;
+}
+
+/* Set a background color and font for the entire page */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Style the page title */
+h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Style the section headers */
+h2 {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Style the tables */
+table {
+    margin: 20px auto; /* Center the table horizontally and add space above and below */
+    width: 90%; /* Adjust the table width as needed */
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+/* Style the table headers */
+th {
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Style the table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style table cells */
+td, th {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Hover effect on table rows */
+tr:hover {
+    background-color: #ddd;
+}
+.gap {
+    margin-right: 10px; /* Adjust the margin to control the spacing */
+}
