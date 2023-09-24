@@ -64,6 +64,10 @@ const employeeSchema = new mongoose.Schema({
     },
   ],
 
+  startDate: Date,
+  endDate: Date,
+  durationInDays: Number,
+
   leaveBalances: {
     casualLeave: {
       type: Number,
@@ -93,6 +97,10 @@ const employeeSchema = new mongoose.Schema({
 
 
 });
+
+    
+
+
 
 
 
@@ -127,4 +135,5 @@ employeeSchema.pre("save", async function (next) {
 const Register = new mongoose.model("Register", employeeSchema);
 
 module.exports = Register;
+
 

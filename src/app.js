@@ -13,7 +13,7 @@ const auth = require("./middleware/auth");
 
 require("./db/conn");
 const Register = require("./models/registers");
-const DateModel = require("./models/DateModel");
+// const DateModel = require("./models/DateModel");
 const port = process.env.PORT || 5000;
 
 const static_path = path.join(__dirname, "../public");
@@ -79,28 +79,27 @@ app.get("/LeaveStatus_DR", (req, res) => {
 
 app.get("/Leave_Application", async (req, res) => {
   try {
-    // const user_email = await Register.findOne({ email: email });
-    // if (!user_email) {
-    //   res.status(400).send("User ID is missing.");
-    //   return;
-    // }
-
-    // Fetch all documents from the MongoDB collection
-    const savedDates = await DateModel.find();
-    // const user = await Register.findOne(user_email);
-
-    // if (!user) {
-    //   res.status(404).send("User not found.");
-    //   return;
-    // }
-    // Render an EJS template to display the saved dates and durations
+    const savedDates = await Register.findOne();
     res.render("Leave_Application", { savedDates }); // 'savedDates' is the name of your EJS template
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching saved dates.");
   }
 });
+// const user_email = await Register.findOne({ email: email });
+// if (!user_email) {
+//   res.status(400).send("User ID is missing.");
+//   return;
+// }
 
+// Fetch all documents from the MongoDB collection
+// const user = await Register.findOne(user_email);
+
+// if (!user) {
+//   res.status(404).send("User not found.");
+//   return;
+// }
+// Render an EJS template to display the saved dates and durations
 app.post("/register", async (req, res) => {
   try {
     const password = req.body.password;
@@ -300,9 +299,15 @@ app.get("/leaveBalances/:userId", async (req, res) => {
 });
 
 app.post("/Leave_Application", async (req, res) => {
-
-
   try {
+    const email = req.body.email;
+    const user_email = await Register.findOne({ email: email });
+
+    if (!user_email) {
+      return res.status(400).send("Invalid Email");
+    }
+
+
     const startDate = new Date(req.body.startDate);
     const endDate = new Date(req.body.endDate);
     if (endDate < startDate) {
@@ -313,54 +318,49 @@ app.post("/Leave_Application", async (req, res) => {
     const leaveType = req.body.leaveType;
     const leaveBalanceField = `leaveBalances.${leaveType.toLowerCase()}Leave`; // Construct the field name dynamically
 
-    // let leaveType = req.body.leaveType.replace("_", "").toLowerCase();
-    // const leaveBalanceField = `leaveBalances.${leaveType}Leave`;
-
     // Calculate the duration in days
     const differenceInMilliseconds = endDate - startDate;
     const differenceInDays = Math.floor(
       differenceInMilliseconds / (1000 * 60 * 60 * 24)
     );
 
-    const currentDate = await DateModel.findOne({});
+    const currentDate = await Register.findOne({email:email});
 
     if (!currentDate) {
       console.log("No documents found in the database.");
-      // Handle this case as per your application's requirements.
-      // You may want to insert some initial data or handle it differently.
       return;
     }
 
     const currentLeaveBalance =
       currentDate.leaveBalances[leaveType.toLowerCase() + "Leave"];
-    // Check if the user has enough leave balance
     if (currentLeaveBalance < differenceInDays) {
       res.status(400).send(`Not enough ${leaveType} Leave balance.`);
       return;
     }
 
     const newLeaveBalance = currentLeaveBalance - differenceInDays;
-    await DateModel.updateOne(
-      {},
-      { $set: { [leaveBalanceField]: newLeaveBalance,
-        startDate: startDate,
-        endDate: endDate,
-        durationInDays: differenceInDays
-      } }
+    await Register.updateOne(
+      {email:email},
+      {
+        $set: {
+          [leaveBalanceField]: newLeaveBalance,
+          startDate: startDate,
+          endDate: endDate,
+          durationInDays: differenceInDays,
+        },
+      }
     );
 
     // await newDuration.save();
     console.log(differenceInDays);
-    const savedDates = await DateModel.find();
+    const savedDates = [await Register.findOne({email:email})];
 
-    res.render("Leave_Application", { savedDates, leaveType }); // Redirect to a success page or the form page
+    res.render("Leave_Application", { savedDates, leaveType, email }); // Redirect to a success page or the form page
   } catch (error) {
     console.error(error);
     res.status(500).send("Error saving the duration.");
   }
-
 });
-
 
 app.listen(port, () => {
   console.log(`server is running at ${port}`);

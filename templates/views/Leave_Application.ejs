@@ -56,6 +56,15 @@
       border-radius: 4px;
       box-sizing: border-box;
     }
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      height: 36px;
+    }
 
     select {
       height: 36px;
@@ -110,6 +119,10 @@
       <label for="leave-comments">Comments (optional):</label>
       <textarea class="form-control" id="leave-comments" name="comments" rows="3"></textarea>
     </div>
+    <div class="form-group">
+      <label for="email">Confirm Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
     <input type="submit" value="Save Duration">
   </form>
   <!-- Your form goes here -->
@@ -136,8 +149,8 @@
       <tbody>
         <% savedDates.forEach(date => { %>
           <tr>
-            <td><%= date.startDate.toDateString() %></td>
-            <td><%= date.endDate.toDateString() %></td>
+            <td><%= date.startDate ? date.startDate.toDateString() : '' %></td>
+            <td><%= date.endDate ? date.endDate.toDateString() : '' %></td>            
             <td><%= date.durationInDays %></td>
             <td><%= date.leaveBalances.casualLeave %></td>
             <td><%= date.leaveBalances.medicalLeave %></td>
