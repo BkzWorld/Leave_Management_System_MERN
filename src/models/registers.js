@@ -94,6 +94,12 @@ const employeeSchema = new mongoose.Schema({
       default: 15,
     },
   },
+  leaveRequest: {
+    status: {
+      type: String,
+      default: 'pending',
+    },
+  },
 
 
 });

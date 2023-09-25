@@ -73,9 +73,6 @@ app.get("/LeaveStatus_DR", (req, res) => {
   res.render("LeaveStatus_DR");
 });
 
-// app.get("/Leave_Application", (req, res) => {
-//   res.render("Leave_Application");
-// });
 
 app.get("/Leave_Application", async (req, res) => {
   try {
@@ -86,20 +83,30 @@ app.get("/Leave_Application", async (req, res) => {
     res.status(500).send("Error fetching saved dates.");
   }
 });
-// const user_email = await Register.findOne({ email: email });
-// if (!user_email) {
-//   res.status(400).send("User ID is missing.");
-//   return;
-// }
 
-// Fetch all documents from the MongoDB collection
-// const user = await Register.findOne(user_email);
 
-// if (!user) {
-//   res.status(404).send("User not found.");
-//   return;
-// }
-// Render an EJS template to display the saved dates and durations
+app.get("/admin_view", async (req, res) => {
+  try {
+      const allRequests = await Register.find({ 'leaveRequest.status': 'pending' });
+      res.render("admin_view", { allRequests });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Error fetching leave requests.");
+  }
+});
+
+app.get("/status", async (req, res) => {
+  try {
+      // const email = /* Get the email of the logged-in user */;
+      const user = await Register.findOne();
+      res.render("status", { status: user.leaveRequest.status });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Error fetching status.");
+  }
+});
+
+
 app.post("/register", async (req, res) => {
   try {
     const password = req.body.password;
@@ -338,15 +345,17 @@ app.post("/Leave_Application", async (req, res) => {
       return;
     }
 
-    const newLeaveBalance = currentLeaveBalance - differenceInDays;
+    // const newLeaveBalance = currentLeaveBalance - differenceInDays;
     await Register.updateOne(
       {email:email},
       {
         $set: {
-          [leaveBalanceField]: newLeaveBalance,
+          // [leaveBalanceField]: newLeaveBalance,
           startDate: startDate,
           endDate: endDate,
           durationInDays: differenceInDays,
+          leaveType: leaveType,
+          'leaveRequest.status': 'pending'
         },
       }
     );
@@ -361,6 +370,49 @@ app.post("/Leave_Application", async (req, res) => {
     res.status(500).send("Error saving the duration.");
   }
 });
+
+
+app.post("/update_status", async (req, res) => {
+  try {
+      const { email , status } = req.body;
+      const leaveRequest = await Register.findOne({email:email});
+
+      if (status === "approved") {
+          const leaveType = leaveRequest.leaveType;
+          const leaveBalanceField = typeof leaveType === 'string' ? `leaveBalances.${leaveType.toLowerCase()}Leave` : '';
+          const differenceInDays = leaveRequest.durationInDays;
+          //const currentLeaveBalance = leaveRequest.leaveBalances[leaveType.toLowerCase() + "Leave"];
+          const currentLeaveBalance = leaveRequest.leaveBalances?.[leaveType?.toLowerCase() + "Leave"] ?? 0;
+          const newLeaveBalance = currentLeaveBalance - differenceInDays;
+
+          await Register.updateOne(
+              { email:email },
+              {
+                  $set: {
+                      'leaveRequest.status': status,
+                      [leaveBalanceField]: newLeaveBalance
+                  },
+              }
+          );
+      } else {
+          await Register.updateOne(
+              { email:email },
+              {
+                  $set: {
+                      'leaveRequest.status': status,
+                      
+                  },
+              }
+          );
+      }
+      res.status(200).send("Status updated successfully.");
+      res.render("update_status", { status: status });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Error updating status.");
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`server is running at ${port}`);
